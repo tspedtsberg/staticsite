@@ -9,6 +9,7 @@ from markdown import (
     text_to_textnodes,
     markdown_to_blocks,
     markdown_to_html_node,
+    extract_title,
 )
 
 from blocktypes import (
@@ -176,6 +177,17 @@ This is the same paragraph on a new line
         self.assertEqual(block_to_block_type(block), block_type_olist)
         block = "paragraph"
         self.assertEqual(block_to_block_type(block), block_type_paragraph)
+
+
+    def test_extract_title(self):
+        markdown = '''# My Title
+        Some other text.
+        ## A sub-title
+
+        More content here...
+        '''
+        header = extract_title(markdown)
+        self.assertEqual(header, "# My Title")
 
 if __name__ == "__main__":
     unittest.main()

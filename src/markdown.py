@@ -215,3 +215,17 @@ def block_to_html_node(block):
     if blocktype == block_type_quote:
         return quote_to_html_node(block)
     raise ValueError("invalid block type")
+
+
+def extract_title(markdown):
+    lines = markdown.split("\n")
+    for line in lines:
+        print(line)
+    #print(lines)
+    for line in lines:
+        #print(f"line: {line}")
+        if line.startswith("# "):
+            result = line
+        else:
+            raise Exception("No header")
+    return result.strip("# ")
